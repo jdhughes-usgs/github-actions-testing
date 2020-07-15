@@ -29,9 +29,13 @@ jobs:
       run: |
         ls /usr/local/
     
+    - name: list /usr/local/gfortran/
+      run: |
+        ls /usr/local/gfortran/
+    
     - name: /usr/local/gfortran version
       run: |
-        /usr/local/gfortran --version
+        /usr/local/gfortran/gfortran --version
     
     - name: set symbolic link
       run: |
