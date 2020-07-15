@@ -1,0 +1,29 @@
+# This is a basic workflow to help you get started with Actions
+
+name: macos
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest]
+    
+    steps:
+    - name: Install gfortran (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        sudo ln -fs /usr/bin/gfortran-9 /usr/local/bin/gfortran
+    - name: Print gfortran version
+      run: |
+        gfortran --version
