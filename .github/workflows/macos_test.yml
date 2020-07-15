@@ -29,17 +29,17 @@ jobs:
       run: |
         ls /usr/local/
     
-    - name: list /usr/local/gfortran/
+    - name: list /usr/local/gfortran/bin/
       run: |
-        ls /usr/local/gfortran/
+        ls /usr/local/gfortran/bin/
     
     - name: /usr/local/gfortran version
       run: |
-        /usr/local/gfortran/gfortran --version
+        /usr/local/gfortran/bin/gfortran-8 --version
     
     - name: set symbolic link
       run: |
-        sudo ln -fs /usr/local/gfortran /usr/local/bin/gfortran
+        sudo ln -fs /usr/local/gfortran/bin/gfortran-8 /usr/local/bin/gfortran
         
     
     - name: Print gfortran version
