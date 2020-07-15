@@ -26,7 +26,7 @@ jobs:
         brew cask install gfortran
         ls /usr/local/
         ls /usr/local/gfortran*
-        sudo ln -fs /usr/bin/gfortran-8 /usr/local/bin/gfortran
+        sudo ln -fs /usr/local/gfortran-8 /usr/local/bin/gfortran
     
     - name: Print gfortran version
       run: |
