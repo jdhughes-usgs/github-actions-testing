@@ -24,9 +24,19 @@ jobs:
       run: |
         brew cask info gfortran
         brew cask install gfortran
+    
+    - name: list /usr/local/
+      run: |
         ls /usr/local/
-        ls /usr/local/gfortran*
-        sudo ln -fs /usr/local/gfortran-8 /usr/local/bin/gfortran
+        
+    - name: list /usr/local/gfortran/
+      run: |
+        ls /usr/local/gfortran/
+    
+    - name: set symbolic link
+      run: |
+        sudo ln -fs /usr/local/gfortran/gfortran-8 /usr/local/bin/gfortran
+        
     
     - name: Print gfortran version
       run: |
