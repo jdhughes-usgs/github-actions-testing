@@ -21,25 +21,14 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install gfortran (macOS)
+      shell: bash
       run: |
-        brew cask info gfortran
-        brew cask install gfortran
-    
-    - name: list /usr/local/
-      run: |
-        ls /usr/local/
-    
-    - name: list /usr/local/gfortran/bin/
-      run: |
-        ls /usr/local/gfortran/bin/
-    
-    - name: /usr/local/gfortran version
-      run: |
-        /usr/local/gfortran/bin/gfortran --version
-    
-    - name: set symbolic link
-      run: |
-        sudo ln -fs /usr/local/gfortran/bin/gfortran /usr/local/bin/gfortran
+        if ! command -v gfortran &> /dev/null
+        then
+            brew cask info gfortran
+            brew cask install gfortran
+            sudo ln -fs /usr/local/gfortran/bin/gfortran /usr/local/bin/gfortran
+        fi        
            
     - name: Print gfortran version
       run: |
