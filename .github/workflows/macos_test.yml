@@ -22,7 +22,8 @@ jobs:
 
     - name: Install gfortran (macOS)
       run: |
-        brew install gfortran
+        brew cask info gfortran
+        brew cask install gfortran
         sudo ln -fs /usr/bin/gfortran-8 /usr/local/bin/gfortran
     
     - name: Print gfortran version
