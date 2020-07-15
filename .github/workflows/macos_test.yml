@@ -18,6 +18,7 @@ jobs:
         os: [macos-latest]
     
     steps:
+    - uses: actions/checkout@v1
     - name: Install gfortran (macOS)
       if: runner.os == 'macOS'
       run: |
