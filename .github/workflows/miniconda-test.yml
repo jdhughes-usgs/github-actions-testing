@@ -34,7 +34,7 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
         auto-activate-base: true
-        activate-environment: ''
+        activate-environment: 'base'
         auto-update-conda: true
 
     - name: Determine python environment
