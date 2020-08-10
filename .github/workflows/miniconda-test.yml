@@ -57,7 +57,7 @@ jobs:
         use-only-tar-bz2: true
 
     - name: Add jupyter and nbconvert to one matrix entry
-      if: ${{ matrix.file-path }} == '.github'
+      if: ${{ matrix.file-path == '.github' }}
       shell: bash -l {0}
       run: |
         conda install -n flopy jupyter nbconvert
