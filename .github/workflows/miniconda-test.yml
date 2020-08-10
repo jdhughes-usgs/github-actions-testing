@@ -23,8 +23,12 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
         file-path: [etc]
         include:
-          - { os:"ubuntu-latest", python-version:"3.8", file-path:".github"}
-          - { os:"ubuntu-latest", python-version:"3.8", file-path:".github/workflows"}
+          - os: ubuntu-latest
+            python-version: 3.8
+            file-path: .github
+          - os: ubuntu-latest
+            python-version: 3.8
+            file-path: github/workflows
 
     steps:
     # check out repo
