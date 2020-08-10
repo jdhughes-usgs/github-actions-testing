@@ -1,0 +1,44 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Miniconda
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  miniconda-test:
+    name: autotests
+    needs: flopy_lint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [3.8, 3.7, 3.6]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
+    steps:
+    # check out repo
+    - name: Checkout flopy repo
+      uses: actions/checkout@v2
+
+    # Standard python fails on windows without GDAL installation
+    # Using custom bash shell ("shell: bash -l {0}") with Miniconda
+    - name: Setup Miniconda
+      uses: goanpeca/setup-miniconda@v1.6.0
+      with:
+        python-version: ${{ matrix.python-version }}
+        activate-environment: ""
+        auto-update-conda: true
+
+    - name: Determine python environment
+      shell: bash -l {0}
+      run: |
+        conda info
+        conda list
