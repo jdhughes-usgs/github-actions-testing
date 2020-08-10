@@ -53,6 +53,7 @@ jobs:
       uses: goanpeca/setup-miniconda@v1.6.0
       with:
         python-version: ${{ matrix.python-version }}
+        channels: conda-forge
         auto-update-conda: true
         auto-activate-base: true
         activate-environment: flopy
@@ -76,7 +77,7 @@ jobs:
         conda info
         conda list
 
-    - name: Add packages to flopy environment
+    - name: Add packages to the environment
       shell: bash -l {0}
       run: |
         conda env update -n flopy --file etc/environment.yml
