@@ -22,13 +22,16 @@ jobs:
         python-version: [3.8, 3.7, 3.6]
         os: [ubuntu-latest, macos-latest, windows-latest]
         file-path: [etc]
+        cmd-str: [ ]
         include:
           - os: ubuntu-latest
             python-version: 3.8
             file-path: .github
+            cmd-str: .github
           - os: ubuntu-latest
             python-version: 3.8
             file-path: etc
+            cmd-str: etc
 
     steps:
     # check out repo
@@ -57,7 +60,7 @@ jobs:
         use-only-tar-bz2: true
 
     - name: Add jupyter and nbconvert to one matrix entry
-      if: ${{ matrix.file-path == '.github' }}
+      if: matrix.file-path == '.github'
       shell: bash -l {0}
       run: |
         conda install -n flopy jupyter nbconvert
@@ -80,7 +83,7 @@ jobs:
         conda info
         conda list
 
-    - name: Run a command with ${{ matrix.file-path }}
+    - name: Run a command with ${{ matrix.cmd-str }}
       shell: bash -l {0}
       run: |
-        ls -la ${{ matrix.file-path }}
+        ls -la ${{ matrix.cmd-str}}
