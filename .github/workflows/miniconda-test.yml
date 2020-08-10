@@ -33,7 +33,7 @@ jobs:
       uses: goanpeca/setup-miniconda@v1.6.0
       with:
         python-version: ${{ matrix.python-version }}
-        activate-environment: ""
+        activate-environment: ''
         auto-update-conda: true
 
     - name: Determine python environment
