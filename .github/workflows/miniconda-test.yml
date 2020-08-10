@@ -35,7 +35,7 @@ jobs:
 
     steps:
     # check out repo
-    - name: Checkout flopy repo
+    - name: Checkout repo
       uses: actions/checkout@v2
 
     - name: Cache Miniconda
@@ -81,7 +81,7 @@ jobs:
     - name: Add packages to flopy environment
       shell: bash -l {0}
       run: |
-        conda env update -n flopy -c conda-forge --file etc/environment.yml
+        conda env update -n flopy --file etc/environment.yml
 
     - name: Determine python environment
       shell: bash -l {0}
