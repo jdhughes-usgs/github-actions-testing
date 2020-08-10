@@ -15,7 +15,6 @@ jobs:
   # This workflow contains a single job called "build"
   miniconda-test:
     name: autotests
-    needs: flopy_lint
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
