@@ -33,6 +33,7 @@ jobs:
       uses: goanpeca/setup-miniconda@v1.6.0
       with:
         python-version: ${{ matrix.python-version }}
+        auto-activate-base: true
         activate-environment: ''
         auto-update-conda: true
 
