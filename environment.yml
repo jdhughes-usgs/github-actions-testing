@@ -23,3 +23,6 @@ dependencies:
   - descartes
   - pyproj
   - shapely
+  - nbconvert
+  - jupyter
+
