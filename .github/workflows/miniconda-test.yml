@@ -28,7 +28,7 @@ jobs:
             file-path: .github
           - os: ubuntu-latest
             python-version: 3.8
-            file-path: github/workflows
+            file-path: etc
 
     steps:
     # check out repo
@@ -57,8 +57,8 @@ jobs:
         use-only-tar-bz2: true
 
     - name: Add jupyter and nbconvert to one matrix entry
-      shell: bash -l {0}
       if: ${{ matrix.file-path }} == '.github'
+      shell: bash -l {0}
       run: |
         conda install -n flopy jupyter nbconvert
         conda list
