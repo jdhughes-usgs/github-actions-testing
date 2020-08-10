@@ -33,8 +33,6 @@ jobs:
       uses: goanpeca/setup-miniconda@v1.6.0
       with:
         python-version: ${{ matrix.python-version }}
-        mamba-version: "*"
-        channels: conda-forge,defaults
         channel-priority: true
         auto-update-conda: true
         auto-activate-base: true
@@ -49,7 +47,7 @@ jobs:
     - name: Add packages to flopy environment
       shell: bash -l {0}
       run: |
-        mamba env update -n flopy --file environment.yml
+        conda env update -n flopy --file environment.yml
 
     - name: Determine python environment
       shell: bash -l {0}
