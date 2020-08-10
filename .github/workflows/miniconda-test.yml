@@ -21,12 +21,16 @@ jobs:
       matrix:
         python-version: [3.8, 3.7, 3.6]
         os: [ubuntu-latest, macos-latest, windows-latest]
+        file-path: [etc]
+        include:
+          - { os:"ubuntu-latest", python-version:"3.8", file-path:".github"}
+          - { os:"ubuntu-latest", python-version:"3.8", file-path:".github/workflows"}
 
     steps:
     # check out repo
     - name: Checkout flopy repo
       uses: actions/checkout@v2
-      
+
     - name: Cache Miniconda
       uses: actions/cache@v2.1.0
       env:
@@ -34,8 +38,8 @@ jobs:
         CACHE_NUMBER: 0
       with:
         path: ~/conda_pkgs_dir
-        key: ${{ runner.os }}-conda-python${{ matrix.python-version }}-${{ env.CACHE_NUMBER }}-${{ hashFiles('environment.yml') }}
-    
+        key: ${{ runner.os }}-conda-python${{ matrix.python-version }}-${{ matrix.file-path }}-${{ env.CACHE_NUMBER }}-${{ hashFiles('environment.yml') }}
+
     # Standard python fails on windows without GDAL installation
     # Using custom bash shell ("shell: bash -l {0}") with Miniconda
     - name: Setup Miniconda
@@ -48,19 +52,31 @@ jobs:
         activate-environment: flopy
         use-only-tar-bz2: true
 
-    - name: Determine python environment
+    - name: Add jupyter and nbconvert to one matrix entry
       shell: bash -l {0}
+      if: ${{ matrix.file-path }} == '.github'
       run: |
-        conda info
+        conda install -n flopy jupyter nbconvert
         conda list
-    
-    - name: Add packages to flopy environment
-      shell: bash -l {0}
-      run: |
-        conda env update -n flopy --file environment.yml
 
     - name: Determine python environment
       shell: bash -l {0}
       run: |
         conda info
         conda list
+
+    - name: Add packages to flopy environment
+      shell: bash -l {0}
+      run: |
+        conda env update -n flopy --file etc/environment.yml
+
+    - name: Determine python environment
+      shell: bash -l {0}
+      run: |
+        conda info
+        conda list
+
+    - name: Run a command with ${{ matrix.file-path }}
+      shell: bash -l {0}
+      run: |
+        ls -la ${{ matrix.file-path }}
