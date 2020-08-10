@@ -33,9 +33,8 @@ jobs:
       uses: goanpeca/setup-miniconda@v1.6.0
       with:
         python-version: ${{ matrix.python-version }}
-        auto-activate-base: true
-        activate-environment: 'base'
         auto-update-conda: true
+        auto-activate-base: true
 
     - name: Determine python environment
       shell: bash -l {0}
