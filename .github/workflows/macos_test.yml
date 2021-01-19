@@ -23,15 +23,18 @@ jobs:
     - name: Install gfortran (macOS)
       shell: bash
       run: |
-        if ! command -v gfortran &> /dev/null
-        then
-            brew info --cask gfortran
-            brew install --cask gfortran
-            ls -l /usr/local/gfortran/bin/
-            sudo ln -fs /usr/local/gfortran/bin/gfortran /usr/local/bin/gfortran
-            sudo ln -fs /usr/local/gfortran/bin/gcc /usr/local/bin/gcc
-            sudo ln -fs /usr/local/gfortran/bin/g++ /usr/local/bin/g++
-        fi        
+        which gfortran-10
+        which gcc-10
+        which g++-10
+        # if ! command -v gfortran &> /dev/null
+        # then
+        #     brew info --cask gfortran
+        #     brew install --cask gfortran
+        #     ls -l /usr/local/gfortran/bin/
+        #     sudo ln -fs /usr/local/gfortran/bin/gfortran /usr/local/bin/gfortran
+        #     sudo ln -fs /usr/local/gfortran/bin/gcc /usr/local/bin/gcc
+        #     sudo ln -fs /usr/local/gfortran/bin/g++ /usr/local/bin/g++
+        #fi        
            
     - name: Print GNU compiler versions
       run: |
