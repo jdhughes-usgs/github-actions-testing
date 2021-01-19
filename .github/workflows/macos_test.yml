@@ -26,6 +26,9 @@ jobs:
         which gfortran-10
         which gcc-10
         which g++-10
+        sudo ln -fs /usr/local/bin/gfortran-10 /usr/local/bin/gfortran
+        sudo ln -fs /usr/local/bin/gcc-10 /usr/local/bin/gcc
+        sudo ln -fs /usr/local/bin/g++-10 /usr/local/bin/g++
         # if ! command -v gfortran &> /dev/null
         # then
         #     brew info --cask gfortran
